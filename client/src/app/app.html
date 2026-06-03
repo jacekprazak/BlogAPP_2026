@@ -1,0 +1,15 @@
+<p class="text-5xl text-red-800 font-mono mx-auto text-center">Pani przypierdalasińska czyli co mnie w#$%wia</p>
+
+<div class="card bg-base-300 w-1/2 mx-auto p-10 mt-10 shadow-xl">
+  <table class="table">
+    @for (article of articles(); track $index) {
+    <tr class="table-row">
+      <td class="text-primary font-bold">{{article.id}}</td>
+      <td class="text-secondary">{{article.title}}</td>
+      <td class="text-warning">{{article.content}}</td>
+      <td class="text-warning"><button class="btn btn-block btn-primary">Button</button></td>
+    </tr>
+    <th></th>
+    }
+  </table>
+</div>
