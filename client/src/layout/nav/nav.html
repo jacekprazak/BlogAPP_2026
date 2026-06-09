@@ -1,0 +1,39 @@
+<header class="navbar">
+    <!-- Logo -->
+    <div class="navbar-logo">
+        <a href="/">BlogApp</a>
+    </div>
+
+    <!-- Middle Navigation -->
+    <nav class="navbar-middle">
+        <a href="#">Home</a>
+        <a href="#">Articles</a>
+        <a href="#">Contact</a>
+        <a href="#">About</a>
+    </nav>
+
+    <!-- Right Side - Login Form -->
+    <div class="navbar-auth">
+
+
+        @if (accountService.currentUser(); as user) {
+        <div class="dropdown">
+            <div tabindex="0" role="button" class="btn m-1 z-1">Click</div>
+            <ul tabindex="-1" class="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+                <li><a>option 1</a></li>
+                <li><button (click)="logout()">Logout</button></li>
+            </ul>
+        </div>
+        } @else {
+        <form #loginForm="ngForm" (ngSubmit)="login()">
+            <input [(ngModel)]="creds.email" name="email" type="email" placeholder="Email" class="auth-input" />
+            <input [(ngModel)]="creds.password" name="password" type="password" placeholder="Password" class="auth-input" />
+            <button type="submit" class="auth-button">Login</button>
+        </form>
+        }
+
+
+
+
+    </div>
+</header>

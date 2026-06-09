@@ -1,30 +1,28 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { Nav } from "../layout/nav/nav";
+import { AccountService } from '../core/services/account-service';
+import { Articles } from "../features/articles/articles";
+
 
 @Component({
   selector: 'app-root',
-  imports: [],
+  imports: [Nav, Articles],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App implements OnInit {
-
-  private http = inject(HttpClient)
-  protected articles = signal<any>([])
-  protected readonly title = signal('client');
+  private accountService = inject(AccountService)
 
   async ngOnInit() {
-     this.GetArticles()
+     this.setCurrentUser()
   }
 
-  public async GetArticles() {
-    return this.http.get("http://localhost:5001/articles").subscribe({
-      next: response => {
-        this.articles.set(response)
-        console.log(response)
-      },
-      error: error => console.log(error),
-      complete: () => console.log("Request complete")
-    })
+  setCurrentUser() {
+    const userString = localStorage.getItem("user")
+    if (!userString) return
+    const user = JSON.parse(userString)
+    this.accountService.currentUser.set(user) 
   }
+
+
 }
