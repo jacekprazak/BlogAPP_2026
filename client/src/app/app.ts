@@ -1,12 +1,12 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Nav } from "../layout/nav/nav";
 import { AccountService } from '../core/services/account-service';
-import { Articles } from "../features/articles/articles";
+import { RouterOutlet } from '@angular/router';
 
 
 @Component({
   selector: 'app-root',
-  imports: [Nav, Articles],
+  imports: [Nav, RouterOutlet ],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
